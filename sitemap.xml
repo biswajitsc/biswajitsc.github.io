@@ -5,43 +5,43 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>biswajitsc.github.io/archive.html</loc>
+  <loc>http://biswajitsc.github.io/archive.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/blog/index.html</loc>
+  <loc>http://biswajitsc.github.io/blog/index.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/categories/index.html</loc>
+  <loc>http://biswajitsc.github.io/categories/index.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/galleries/index.html</loc>
+  <loc>http://biswajitsc.github.io/galleries/index.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/galleries/rss.xml</loc>
+  <loc>http://biswajitsc.github.io/galleries/rss.xml</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/index.html</loc>
+  <loc>http://biswajitsc.github.io/index.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/listings/index.html</loc>
+  <loc>http://biswajitsc.github.io/listings/index.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/rss.xml</loc>
+  <loc>http://biswajitsc.github.io/rss.xml</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/stories/home.html</loc>
+  <loc>http://biswajitsc.github.io/stories/home.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
  <url>
-  <loc>biswajitsc.github.io/stories/pacbot.html</loc>
+  <loc>http://biswajitsc.github.io/stories/pacbot.html</loc>
   <lastmod>2014-07-09</lastmod>
  </url>
 </urlset>
