@@ -63,26 +63,25 @@
             
     <h1>PACBot</h1>
     <p>
-	The applet requires Java-8 to run. The applet won't show if Java-8 is not installed. It will be made compatible to Java-7 soon.
-	</p>
-	<p>
-	It is around 8MB in size and may take a while to load.
+	The applet requires Java-7 to run.
+	</p><p>
+	It is around 8MB in size and may take a while to load. I have created this ChatBot in haste and it maynot perform very well. I intend to improve it over time.
 	</p>
 	<p>
 	If the applet doesn't run or shows some error, please follow the following steps and try again:
-	</p><ol>
-	<li> Go to the Java Control Panel. You can find in the Start menu search or in the Control Panel.
-	</li><li> Go to General tab.
-	</li><li> Click Settings under Temporary Internet Files.
-	</li><li> Uncheck 'Keep temporary files' and click 'OK'.
-	</li><li> Then click 'OK' and close.
-	</li></ol>
+	</p><ul>
+	<li>Go to the Java Control Panel. You can find in the Start menu search or in the Control Panel.
+	</li><li>Go to General tab.
+	</li><li>Click Settings under Temporary Internet Files.
+	</li><li>Uncheck 'Keep temporary files' and click 'OK'.
+	</li><li>Then click 'OK' and close.
+	</li></ul>
 	
 	<br>
 	<br>
 	<br>
 	<p>
-	
+	<script src="http://java.com/js/deployJava.js"></script>
     <script>
         var attributes = {
             code:       "chatbot.ChatBot",
@@ -90,8 +89,8 @@
             width:      500,
             height:     350
         };
-        var parameters = {jnlp_href:document.location.origin+"/java/launch.jnlp", cache_option:"no"}; <!-- Applet Parameters -->
-        var version = "1.8"; <!-- Required Java Version -->
+        var parameters = {jnlp_href:document.location.origin+"/java/launch.jnlp"}; <!-- Applet Parameters -->
+        var version = "1.7"; <!-- Required Java Version -->
         deployJava.runApplet(attributes, parameters, version);
     </script>
     </p>

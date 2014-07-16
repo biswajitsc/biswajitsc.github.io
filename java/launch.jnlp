@@ -13,7 +13,7 @@
 <all-permissions/>
 </security>
     <resources>
-        <j2se version="1.8+"/>
+        <j2se version="1.7+"/>
         <jar href="ChatBot.jar" main="true"/>
     <jar href="lib/stanford-corenlp-3.4.jar"/>
 </resources>
