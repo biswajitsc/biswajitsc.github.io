@@ -23,7 +23,7 @@
 
     <script>
     $(document).ready(function(){
-        $('.grid').isotope({
+        $grid = $('.grid').isotope({
             layoutMode: 'masonryHorizontal',
             itemSelector: '.grid-item',
             masonryHorizontal: { rowHeight: 100 }
@@ -38,16 +38,26 @@
                 $xml.find('item').each(function () {
                     img_title = $(this).find('title').first().text();
                     img_url = $(this).find('thumbnail').eq(0).attr('url');
+                    img_link = $(this).find('link').text();
+
                     if(img_url.indexOf("https://") == -1){
                         img_url = img_url.replace("http://", "https://");
                     }
+
+                    if(img_link.indexOf("https://") == -1){
+                        img_link = img_link.replace("http://", "https://");
+                    }
+
                     var append_str = "<div class='grid-item'>";
+                    append_str += "<a href='" + img_link + "'>"
                     append_str += "<img src='" + img_url + "' title='" + img_title + "'/>";
-                    append_str += "</div>";
-                    $('.grid').isotope('insert', $(append_str));
+                    append_str += "</a></div>";
+                    $grid.isotope('insert', $(append_str));
                 });
             }
         });
+
+        $(window).load(function(){$grid.isotope('layout');});
     });
     </script>
 
