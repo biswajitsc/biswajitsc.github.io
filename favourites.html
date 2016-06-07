@@ -1,0 +1,76 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8"/>
+    <title>Biswajit Paria - Home</title>
+    <link rel="stylesheet" href="./css/master.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Slabo+27px|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/isotope-masonry-horizontal@2/masonry-horizontal.js"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78443229-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    <script>
+    $(document).ready(function(){
+        $('.grid').isotope({
+            layoutMode: 'masonryHorizontal',
+            itemSelector: '.grid-item',
+            masonryHorizontal: { rowHeight: 100 }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "http://backend.deviantart.com/rss.xml?q=favby%3Abiswajitsc",
+            dataType: "xml",
+            success: function (xml) {
+                $xml = $(xml);
+                $xml.find('item').each(function () {
+                    img_title = $(this).find('title').first().text();
+                    img_url = $(this).find('thumbnail').eq(0).attr('url');
+                    var append_str = "<div class='grid-item'>";
+                    append_str += "<img src='" + img_url + "' title='" + img_title + "'/>";
+                    append_str += "</div>";
+                    $('.grid').isotope('insert', $(append_str));
+                });
+            }
+        });
+    });
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Biswajit Paria</h1>
+        <h2>
+            <a href="https://biswajitsc.github.io">Home</a> ||
+            <a href="https://biswajitsc.github.io/paper-spray.html">Paper-Spray</a> ||
+            <a href="https://github.com/biswajitsc">Github</a> ||
+            <a href="https://in.linkedin.com/in/biswajitsc">Linked-In</a> ||
+            <a href="files/CV.pdf">CV</a> ||
+            <a href="#contact">Contact</a> ||
+            <a href="https://biswajitsc.github.io/favourites.html">Favourites</a>
+        </h2>
+        <br>
+        <h2> Favourites </h2>
+        <br><br>
+        <div class="posts-wrapper">
+            <h2> Starred images in DeviantArt </h2>
+            <div class="grid">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

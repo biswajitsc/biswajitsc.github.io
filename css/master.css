@@ -106,7 +106,7 @@ ul.intro {
 	margin-top: 60px;
 	margin-left: 60px;
 	margin-right: 60px;
-    padding-bottom: 2cm;
+	padding-bottom: 2cm;
 
 }
 
@@ -120,8 +120,8 @@ ul.intro {
 	border-width:1px;
 	border-color:firebrick;
 	border-style: solid solid solid solid;
- 	height: 192px; width: 800px; overflow: auto;
- 	font-size:18px;
+	height: 192px; width: 800px; overflow: auto;
+	font-size:18px;
 }
 
 .post {
@@ -129,12 +129,12 @@ ul.intro {
 
 
 .hidden {
-    display: none;
+	display: none;
 }
 .unhidden {
-    display: table;
-    position:relative;
-/*    width:80%;
+	display: table;
+	position:relative;
+	/*    width:80%;
 */}
 
 pre {
