@@ -9,7 +9,6 @@
 
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
-    <script src="https://npmcdn.com/isotope-masonry-horizontal@2/masonry-horizontal.js"></script>
     <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 
     <script>
@@ -25,9 +24,11 @@
     <script>
     $(document).ready(function(){
         var $grid = $('.grid').isotope({
-            layoutMode: 'masonryHorizontal',
+            layoutMode: 'masonry',
             itemSelector: '.grid-item',
-            masonryHorizontal: { rowHeight: 100 }
+            masonry: {
+                columnWidth: 100
+            }
         });
 
         $.ajax({
