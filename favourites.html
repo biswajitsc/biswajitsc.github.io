@@ -55,10 +55,11 @@
                     append_str += "<img src='" + img_url + "' title='" + img_title + "'/>";
                     append_str += "</a></div>";
                     $grid.isotope('insert', $(append_str));
-
-                    $grid.imagesLoaded().always(function(instance){
-                        $grid.isotope('layout');
-                    });
+                });
+            },
+            complete: function (data) {
+                $grid.imagesLoaded().always(function(instance){
+                    $grid.isotope('layout');
                 });
             }
         });
