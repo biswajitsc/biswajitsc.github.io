@@ -27,7 +27,7 @@
             layoutMode: 'masonry',
             itemSelector: '.grid-item',
             masonry: {
-                columnWidth: 100
+                gutter: 0
             }
         });
 
@@ -39,7 +39,7 @@
                 $xml = $(xml);
                 $xml.find('item').each(function () {
                     img_title = $(this).find('title').first().text();
-                    img_url = $(this).find('thumbnail').eq(0).attr('url');
+                    img_url = $(this).find('thumbnail').eq(1).attr('url');
                     img_link = $(this).find('link').text();
 
                     if(img_url.indexOf("https://") == -1){

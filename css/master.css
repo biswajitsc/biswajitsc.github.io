@@ -111,7 +111,7 @@ ul.intro {
 }
 
 .posts-wrapper {
-	max-width: 950px;
+	max-width: 1000px;
 }
 
 .question {
@@ -143,11 +143,15 @@ pre {
 	border: 3;
 	font-size:0.7em;
 	line-height:1.2em;
-	max-width: 950px;
+	max-width: 1000px;
 
 	whitewhite-space: pre-wrap;       /* css-3 */
 	whitewhite-space: -pre-wrap;      /* Opera 4-6 */
 	whitewhite-space: -o-pre-wrap;    /* Opera 7 */
 	word-wrap: break-word;       /* Internet Explorer 5+ */
 	whitewhite-space: -moz-pre-wrap;  /* Older Versions of Mozilla */
+}
+
+.grid-item img {
+	width: 200;
 }
