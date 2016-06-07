@@ -29,7 +29,7 @@ html {
 h1 {
 	font-family: 'Roboto Slab';
 	font-size:40px;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 	font-weight: 400;
 	color: midnightblue;
 }
@@ -114,6 +114,22 @@ ul.intro {
 	max-width: 1000px;
 }
 
+.half-posts-wrapper {
+	width: 400px;
+	float: left;
+	margin: 10px 10px 10px 10px;
+}
+
+.gallery-posts-wrapper {
+	width: 600px;
+	float: left;
+	margin: 10px 10px 10px 10px;
+	padding: 20px;
+	border-width: 5px;
+	border-color: #99ff99;
+	border-style: solid solid solid solid;
+}
+
 .question {
 	margin-left: 40px;
 	padding:5px;
@@ -153,5 +169,5 @@ pre {
 }
 
 .grid-item img {
-	width: 200;
+	width: 100;
 }

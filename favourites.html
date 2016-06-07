@@ -31,6 +31,9 @@
             }
         });
 
+        var img_cnt = 0;
+        var max_img_cnt = 50;
+
         $.ajax({
             type: "GET",
             url: "https://backend.deviantart.com/rss.xml?q=favby%3Abiswajitsc",
@@ -38,6 +41,9 @@
             success: function (xml) {
                 $xml = $(xml);
                 $xml.find('item').each(function () {
+                    img_cnt += 1
+                    if(img_cnt > max_img_cnt) return;
+
                     img_title = $(this).find('title').first().text();
                     img_url = $(this).find('thumbnail').eq(1).attr('url');
                     img_link = $(this).find('link').text();
@@ -81,10 +87,17 @@
             <a href="https://biswajitsc.github.io/favourites.html">Favourites</a>
         </h2>
         <br>
-        <h2> Favourites </h2>
+        <h1> My Favourites </h1>
         <br><br>
-        <div class="posts-wrapper">
-            <h2> Starred images in DeviantArt </h2>
+        <div class="half-posts-wrapper">
+            <h2> Miscellaneous </h2>
+            <ul>
+                <li> <a href="https://in.pinterest.com/explore/origami/">Pinterest Origami</a> </li>
+                <li> <a href="https://in.pinterest.com/explore/food/">Pinterest Food</a> </li>
+            </ul>
+        </div>
+        <div class="gallery-posts-wrapper">
+            <h2> My favourite pictures from DeviantArt </h2>
             <div class="grid">
             </div>
         </div>
