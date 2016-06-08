@@ -34,6 +34,7 @@
 
         var img_cnt = 0;
         var max_img_cnt = 50;
+        var all_loaded = false;
 
         $.ajax({
             type: "GET",
@@ -66,10 +67,15 @@
             },
             complete: function (data) {
                 $grid.imagesLoaded().always(function(instance){
+                    all_loaded = true;
                     $grid.isotope('layout');
                 });
             }
         });
+
+        window.setInterval(function(){
+            if(!all_loaded) $grid.isotope('layout');
+        }, 2000);
     });
     </script>
 
