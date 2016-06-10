@@ -50,7 +50,7 @@ body {
 	background-attachment: fixed;
 }
 
-img .wrap{
+img	.wrap {
 	float: left;
 	margin: 20px 20px 0px 0px;
 }
@@ -121,7 +121,7 @@ ul.intro {
 }
 
 .gallery-posts-wrapper {
-	width: 700px;
+	width: 620px;
 	float: left;
 	margin: 10px 10px 10px 10px;
 	padding: 20px;
@@ -157,7 +157,3 @@ pre {
 	word-wrap: break-word;       /* Internet Explorer 5+ */
 	whitewhite-space: -moz-pre-wrap;  /* Older Versions of Mozilla */
 }
-
-/*.grid-item img {
-	max-height: 120;
-}*/
