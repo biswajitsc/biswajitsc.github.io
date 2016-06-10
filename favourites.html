@@ -28,7 +28,7 @@
             layoutMode: 'packery',
             itemSelector: '.grid-item',
             packery: {
-                gutter: 3
+                gutter: 5
             }
         });
 
@@ -62,20 +62,29 @@
                     append_str += "<a href='" + img_link + "'>";
                     append_str += "<img src='" + img_url + "' title='" + img_title + "'/>";
                     append_str += "</a></div>";
-                    $grid.isotope('insert', $(append_str));
+                    $append_str = $(append_str);
+                    $append_str.hide();
+                    $grid.append($append_str);
                 });
             },
-            complete: function (data) {
-                $grid.imagesLoaded().always(function(instance){
-                    all_loaded = true;
-                    $grid.isotope('layout');
+            complete: function(xml) {
+                var iso = $grid.data('isotope');
+                var itemSelector = iso.options.itemSelector;
+
+                $x = $grid.imagesLoaded().progress(function(imgLoad, image){
+                    var $item = $(image.img).parents(itemSelector);
+                    $item.show();
+
+
+                    width = image.img.clientWidth;
+                    height = image.img.clientHeight;
+
+                    if(width > 1.2 * height) $item.find('img').width('245px');
+                    else $item.find('img').width('120px');
+                    iso.appended($item);
                 });
             }
         });
-
-        window.setInterval(function(){
-            if(!all_loaded) $grid.isotope('layout');
-        }, 2000);
     });
     </script>
 

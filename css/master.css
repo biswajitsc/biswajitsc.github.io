@@ -1,6 +1,6 @@
 /* Source: https://www.cs.umd.edu/~miyyer/ */
 
-article,
+/*article,
 aside,
 details,
 figcaption,
@@ -12,7 +12,7 @@ menu,
 nav,
 section {
 	display: block;
-}
+}*/
 
 /* General Elements */
 
@@ -50,7 +50,7 @@ body {
 	background-attachment: fixed;
 }
 
-img {
+img .wrap{
 	float: left;
 	margin: 20px 20px 0px 0px;
 }
@@ -143,16 +143,6 @@ ul.intro {
 .post {
 }
 
-
-.hidden {
-	display: none;
-}
-.unhidden {
-	display: table;
-	position:relative;
-	/*    width:80%;
-*/}
-
 pre {
 	background-color: #f5f5f5;
 	color: #110000;
@@ -168,6 +158,6 @@ pre {
 	whitewhite-space: -moz-pre-wrap;  /* Older Versions of Mozilla */
 }
 
-.grid-item img {
+/*.grid-item img {
 	max-height: 120;
-}
+}*/
