@@ -1,0 +1,377 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{ifthen}
+\usepackage{calc}
+% \usepackage{times}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\begin{list}{}{% \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            % includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.15in,     % Length of section titles
+            marginparsep=.1in,       % Space between titles and text
+%            margin=1in,               % 1 inch margins
+						top = .7in,
+						left = .8in,
+						right = .8in,
+						bottom = .6in,
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+%                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.5}
+\hypersetup{colorlinks=true,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \hyphenpenalty=10000%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\halfblankline}{\quad\vspace{-0.4\baselineskip}\pagebreak[3]}
+% \newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\blankline}{\quad\vspace{-0.1\baselineskip}\pagebreak[3]}
+\newcommand{\secspace}{\\ \quad\vspace{-0.6\baselineskip}\pagebreak[3]}
+% \newcommand{\halfblankline}{}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+
+\newcommand{\awardedby}[1]{\hfill\mbox{}\linebreak[0]\hspace*{\fill} \mbox{\textit{#1}}}
+\newcommand{\publication}[3]{#2. \textit{#1}. #3.}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ADJUST MARGINS
+%\addtolength{\oddsidemargin}{-.875in}
+%\addtolength{\evensidemargin}{.875in}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Names %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\biswa}{\underline{B. Paria}}
+\newcommand{\pabitra}{P. Mitra}
+\newcommand{\partha}{P. Bhowmick}
+\newcommand{\ambedkar}{A. Dukkipati}
+\newcommand{\annervaz}{K.M. Annervaz}
+\newcommand{\anirban}{A. Santara}
+\newcommand{\prabir}{P.K. Biswas}
+\newcommand{\sanjoy}{S. Pratihar}
+\newcommand{\avisek}{A. Lahiri}
+\newcommand{\barnabas}{B. P\'oczos}
+\newcommand{\samy}{K. Kandasamy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Conferences %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\arxiv}[1]{arXiv, #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newboolean{iscustom}
+\setboolean{iscustom}{false}
+\setboolean{iscustom}{true}
+
+\begin{document}
+  \hspace*{-\marginparsep minus \marginparwidth}%
+   \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+   {\large \bfseries BISWAJIT PARIA} \\
+   [.2\baselineskip]%
+   GHC 8003, Carnegie Mellon University, 5000 Forbes Ave, 
+    Pittsburgh PA, 15213, USA. \\
+    \textit{Web:} 
+      \href{https://biswajitsc.github.io}{https://biswajitsc.github.io},
+    \hspace{0.15in}
+    \textit{Phone:} +1 412 620 3004,
+    \hspace{0.15in}
+    \textit{E-mail:} \href{mailto:bparia@cs.cmu.edu}{bparia@cs.cmu.edu}
+       \\[-.55\baselineskip]%
+           \rule{\columnwidth}{1pt}
+   \end{minipage}
+
+
+% CV begins here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.2in}
+
+\section{Research Interests}
+Bayesian Optimization, Decision Making under Uncertainty, Time Series Forecasting using NNs, Deep Learning
+~\secspace
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Education %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education}
+
+\textbf{Carnegie Mellon University}, Pittsburgh, PA \hfill Sep 2017 - Jul 2022 (tentative)\\*
+M.S., Ph.D. in Machine Learning. \hfill \textit{Advisors:} \href{https://www.cs.cmu.edu/~bapoczos/}{Barnab\'{a}s P\'oczos}, \href{https://www.cs.cmu.edu/~schneide/}{Jeff Schneider}\\*
+\ifthenelse{\boolean{iscustom}}{
+\textit{Fall 21 GPA: 4.05 (A+: 4.33, A: 4.0).} \\*
+}{}
+\halfblankline
+
+\textbf{Indian Institute of Technology Kharagpur}, India \hfill Jul 2012 - Apr 2017 \\*
+5-year Bachelors and Masters in Computer Science and Engineering\\*
+\ifthenelse{\boolean{iscustom}}{
+\textit{GPA 9.80$\,$/$\,$10.00}, highest in class\\*
+}{}
+\secspace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Professional Experience %%%%%%%%%%%%%%%%%%%%%%%%%
+% \ifthenelse{\boolean{iscustom}}{
+\section{Experience}
+Summer Research Intern \hfill Google Research. Mountain View, CA, 2020\\*
+\textbf{Hierarchical Time-Series Forecasting} \textit{with} Abhimanyu Das, Amr Ahmed \\*
+\textit{Proposed methods for forecasting of time series arranged in an hierarchy.}
+\\ \halfblankline
+
+Summer Research Intern \hfill Snap Research. Los Angeles, CA, 2018\\*
+\textbf{Sparse Representations for Fast Retrieval} \textit{with} Ian En-Hsu Yen, Ning Xu \\*
+\textit{Proposed an approach to sparsify image embeddings in order
+to speed up retrieval using sparse matrix multiplication operations.}
+\\ \halfblankline
+
+Summer Research Intern \hfill
+University of Southern California. Los Angeles, CA, 2015\\*
+\textbf{Interpretability of Learned Features for Clinical Time Series} \textit{with} Prof. Yan Liu\\*
+\textit{Proposed a strategy to interpret features learned by a deep neural network trained on
+clinical time series data.}
+
+% Summer Research Intern \hfill
+% IISc\footnote{Indian Institute of Science} and Accenture Tech. Labs. Bengaluru, India, 2016\\*
+% \textbf{Natural Language Inference} \textit{with} Ambedkar Dukkipati (IISc) and Annervaz K.M. (ATL)\\*
+% \textit{Proposed a deep learning model using LSTMs and attention for Natural Language Inference.}
+% }{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Honours and Awards %%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Honours \& Awards}
+Prime Minister of India Gold Medal \awardedby{IIT Kharagpur, 2017}\\*
+\textit{Awarded to the highest ranking student of the graduating class}
+\\ \halfblankline
+  
+Viterbi-India Scholar \awardedby{2015}\\*
+\textit{Funded summer internship at Viterbi School of Engineering, USC}
+\\ \halfblankline
+  
+ACM ICPC World Finalist (Team \emph{BitBees}) \awardedby{2015}\\*
+\textit{One of 7 teams from India at the International Collegiate Programming Competition}
+\\ \halfblankline
+
+%  \textbf{Jagadish Bose National Science Talent Search (JBNSTS) Scholar} \hfill 2013\\
+%   Awarded to 30 candidates in the state of West Bengal.
+%   \SmallEntryGap
+  
+Indian National Physics Olympiad (INPhO) Awardee \awardedby{2012}\\*
+\textit{for being among the top 30 candidates in India}\\*
+\textit{Attended the team selection camp for the International Physics Olympiad (IPhO)}
+\\ \halfblankline
+
+Indian National Mathematical Olympiad (INMO) Awardee \awardedby{2010 - 2012}\\*
+\textit{for being among the top 30 candidates in India}\\*
+\textit{Attended the team selection camp for the International Mathematics Olympiad (IMO)}
+\\ \halfblankline
+  
+Kishore Vaigyanik Protsahan Yojana (KVPY) Scholar 
+\hfill \textit{DST\ \footnote{Department of Science and Technology}, Govt. of India, 2011}\\*
+\textit{for exceptional aptitude in basic sciences, 7th rank in India}
+\\ \halfblankline
+  
+Australian Mathematics Competition (AMC) Gold Medallist \hfill \textit{AMT\ \footnote{Australian Mathematics Trust}, 2009}\\*
+\textit{One of 23 medallists in the world}
+\\ \halfblankline
+\secspace
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Papers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Papers}
+
+V. Mehta, \biswa, J. Schneider, S. Ermon, W. Neiswanger. \emph{An Experimental Design Perspective on Exploration in Reinforcement Learning}. Accepted to EcoRL workshop at NeurIPS 2021\\
+(\href{https://arxiv.org/abs/2112.05244}{arxiv}, under conference submission).
+\\ \halfblankline
+
+\biswa, R. Sen, A. Ahmed, A. Das. \emph{Hierarchically Regularized Deep Forecasting}. Pre-print 2021. (\href{https://arxiv.org/abs/2106.07630}{arxiv}, under submission)
+\\ \halfblankline
+
+\biswa, W. Neiswanger, R. Ghods, J. Schneider, \barnabas. \emph{Cost-Aware Bayesian Optimization via Information Directed Sampling}. ICML Workshop on Real World Experiment Design and Active Learning, 2020. (\href{https://realworldml.github.io/files/cr/29_Cost_Aware_BO_ICML_2020_Workshop.pdf}{paper})
+\\ \halfblankline
+
+\samy, K. R. Vysyaraju, W. Neiswanger, \biswa, C. R. Collins, J. Schneider, \barnabas, E. P. Xing. \emph{Tuning Hyperparameters without Grad Students: Scalable and Robust Bayesian Optimisation with Dragonfly}. Journal of Machine Learning Research (JMLR), 2020. (\href{https://arxiv.org/abs/1903.06694}{arxiv}, \href{https://jmlr.csail.mit.edu/papers/volume21/18-223/18-223.pdf}{paper})
+\\ \halfblankline
+
+\biswa, C.K. Yeh, I.E.H. Yen, N. Xu, P. Ravikumar, \barnabas. \emph{Minimizing FLOPs to Learn Efficient Sparse Representations}. International Conference on Learning Representations (ICLR), 2020. (\href{https://openreview.net/pdf?id=SygpC6Ntvr}{paper}, \href{https://github.com/biswajitsc/sparse-embed}{code})
+\\ \halfblankline
+
+\biswa, \samy, \barnabas. \emph{A Flexible Framework for Multi-Objective Bayesian Optimization using Random Scalarizations}. Uncertainty in Artificial Intelligence (UAI), 2019.\\
+(oral presentation, \href{https://arxiv.org/abs/1805.12168}{arxiv}, \href{http://auai.org/uai2019/proceedings/papers/267.pdf}{paper})
+\\ \halfblankline
+
+\biswa, \annervaz, \ambedkar, A. Chatterjee, S. Podder. \emph{A Neural Architecture Mimicking Humans End-to-End for Natural Language Inference}. \arxiv{2016}. (\href{https://arxiv.org/abs/1611.04741}{arxiv})
+\\ \halfblankline
+
+\avisek, \biswa, \prabir. \emph{Forward Stagewise Additive Model for Collaborative Multiview Boosting}. IEEE Transactions in Neural Networks and Learning Systems, 2016. (\href{https://arxiv.org/abs/1608.01874}{arxiv}, \href{https://ieeexplore.ieee.org/abstract/document/7778196}{paper})
+\\ \halfblankline
+
+% A. Guha, M.S. Pydi, \biswa, \ambedkar. \emph{Analytic Connectivity in General Hypergraphs}. \arxiv{2017}. (\href{https://arxiv.org/abs/1701.04548}{arxiv})
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Programming Lang %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Programming Skills} \emph{Proficient:} Python, \emph{Familiar:} C++, bash\\
+\emph{Libraries:} Tensorflow, PyTorch, numpy, sklearn
+\secspace
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Relevant courses %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relevant Courses}
+Advanced Introduction to Machine Learning \hfill CMU, Fall 2017\\
+Intermediate Statistics \hfill CMU, Fall 2017\\
+Statistical Machine Learning \hfill CMU, Spring 2017\\
+Probabilistic Graphical Models \hfill CMU, Spring 2017\\
+Advanced Statistical Theory \hfill CMU, Fall 2018\\
+Martingales \hfill CMU, Fall 2018\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Others %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section {Service \& Other}
+
+\textbf{Teaching Assistantships:} \\
+Advanced Machine Learning \hfill CMU, Spring 2019 \\
+Convex Optimization \hfill CMU, Fall 2018 \\
+Deep Learning \hfill IIT Kharagpur, Spring 2017 \\
+Machine Learning \hfill IIT Kharagpur, Fall 2016 \\
+\\ \halfblankline
+
+\textbf{Math Olympiad Teaching} \hfill 2012 \& 2013\\
+Taught number theory and combinatorics to high school students
+\\ \halfblankline
+
+\textbf{National Service Scheme (NSS)} \hfill 2012 \& 2013\\
+Served under the NSS to work for the betterment of underpriviledged children at a
+village primary school.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \ifthenelse{\boolean{iscustom}}{
+% \section{References}
+% \href{https://www.cs.cmu.edu/~bapoczos/}{Barnab\'{a}s P\'oczos} (bapoczos@cs.cmu.edu), PhD advisor\\
+% \href{https://www.cs.cmu.edu/~schneide/}{Jeff Schneider} (jeff4@andrew.cmu.edu), PhD advisor
+% }{}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
